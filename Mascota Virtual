@@ -1,0 +1,252 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <unistd.h>  
+
+using namespace std;
+
+// Función para limpiar la pantalla
+void limpiar_pantalla() { 
+    cout << "\033[2J\033[H"; 
+}
+
+class Mascota {
+private:
+    int energia;
+    int hambre;
+    int felicidad;
+    string nombre;
+
+public:
+    Mascota(string nom) {
+        nombre = nom;
+        energia = 10;
+        hambre = 10;
+        felicidad = 10;
+    }
+
+    bool verificar_estado() {
+        if (energia <= 0 || hambre > 10 || felicidad <= 0) {  
+            cout << "\nTu mascota ha muerto...\n";
+            cout << "__________,-~-. _.-._.-~-,\n";
+            cout << "_________/ .- ,'_______`-. \\\n";
+            cout << "_________\\ /`__________\\'/\n";
+            cout << "_________ /___'x___x`___\\\n"; 
+            cout << "_________|____,'(_)`.____ |\n";
+            cout << "_________\\___( ._|_. )___ /\n";
+            cout << "__________\\___ .__,'___ /\n";
+            cout << "__________.-`._______,'-.__\n";
+            cout << "________,'__,'___`-'___`.__`.\n";
+            cout << "_______/___/____V____\\___\\_\n";
+            cout << "____,'____/_____†______\\___`.__\n";  
+            cout << "___,'_____|______†_______|_____`.\n";  
+            cout << "__|_____,'|______†_______|`._____| \n";  
+            cout << "___`.__,'_.-\\_____†_____/-._`.__,'\n"; 
+            cout << "_________/`.___†____,'__\\_\n";
+            cout << "__.'\"-._,'______`._:_,'_______`.,-\"-._\n";
+            cout << "_/_,-._`_______)___(________'_,-.__\\\n";
+            cout << "(_(___`._____,'_____`.______,'___)_)\n";
+            cout << "_\\_\\____\\__,'________`.____/.___/_/\n";
+            ver_estado();
+            return false;
+        }
+        return true;
+    }
+
+    void jugar() {
+        cout << "\n" << nombre << " está jugando:\n";
+        cout << "__________,-~-. _.-._.-~-,\n";
+        cout << "_________/ .- ,'_______`-. \\\n";
+        cout << "_________\\ /`__________\\'/\n";
+        cout << "_________ /___'o___o`___\\\n";
+        cout << "_________|____,'(_)`.____ |\n";
+        cout << "_________\\___( ._|_. )___ /\n";
+        cout << "__________\\___ .__,'___ /\n";
+        cout << "__________.-`._______,'-.__\n";
+        cout << "________,'__,'___`-'___`.__`.\n";
+        cout << "_______/___/____V____\\___\\_\n";
+        cout << "____,'____/_____o______\\___`.__\n";
+        cout << "___,'_____|______o_______|_____`.\n";
+        cout << "__|_____,'|______o_______|`._____| \n";
+        cout << "___`.__,'_.-\\_____o______/-._`.__,'\n";
+        cout << "_________/`.___o____,'__\\_\n";
+        cout << "__.'\"-._,'______`._:_,'_______`.,-\"-._\n";
+        cout << "_/_,-._`_______)___(________'_,-.__\\\n";
+        cout << "(_(___`._____,'_____`.______,'___)_)\n";
+        cout << "_\\_\\____\\__,'________`.____/.___/_/\n";
+        felicidad += 2;
+        energia -= 2;
+        hambre += 1;
+        ajustar_valores();
+    }
+
+    void dormir() {
+        cout << "\n" << nombre << " está durmiendo:\n";
+        cout << "__________,-~-. _.-._.-~-,\n";
+        cout << "_________/ .- ,'_______`-. \\\n";
+        cout << "_________\\ /`__________\\'/\n";
+        cout << "_________ /___'Z___Z`___\\\n"; 
+        cout << "_________|____,'(_)`.____ |\n";
+        cout << "_________\\___( ._|_. )___ /\n";
+        cout << "__________\\___ .__,'___ /\n";
+        cout << "__________.-`._______,'-.__\n";
+        cout << "________,'__,'___`-'___`.__`.\n";
+        cout << "_______/___/____V____\\___\\_\n";
+        cout << "____,'____/_____z______\\___`.__\n"; 
+        cout << "___,'_____|______z_______|_____`.\n";
+        cout << "__|_____,'|______z_______|`._____| \n";
+        cout << "___`.__,'_.-\\_____z______/-._`.__,'\n"; 
+        cout << "_________/`.___z____,'__\\_\n";
+        cout << "__.'\"-._,'______`._:_,'_______`.,-\"-._\n";
+        cout << "_/_,-._`_______)___(________'_,-.__\\\n";
+        cout << "(_(___`._____,'_____`.______,'___)_)\n";
+        cout << "_\\_\\____\\__,'________`.____/.___/_/\n";
+        energia += 3;
+        hambre += 1;
+        ajustar_valores();
+    }
+
+    void comer() {
+        cout << "\n" << nombre << " está comiendo:\n";
+        cout << "__________,-~-. _.-._.-~-,\n";
+        cout << "_________/ .- ,'_______`-. \\\n";
+        cout << "_________\\ /`__________\\'/\n";
+        cout << "_________ /___'o___o`___\\\n";
+        cout << "_________|____,'(_)`.____ |\n";
+        cout << "_________\\___( ._|_. )___ /\n";
+        cout << "__________\\___ .__,'___ /\n";
+        cout << "__________.-`._______,'-.__\n";
+        cout << "________,'__,'___`-'___`.__`.\n";
+        cout << "_______/___/____V____\\___\\_\n";
+        cout << "____,'____/_____@______\\___`.__\n";  
+        cout << "___,'_____|______@_______|_____`.\n";  
+        cout << "__|_____,'|______@_______|`._____| \n";  
+        cout << "___`.__,'_.-\\_____@_____/-._`.__,'\n"; 
+        cout << "_________/`.___@____,'__\\_\n";
+        cout << "__.'\"-._,'______`._:_,'_______`.,-\"-._\n";
+        cout << "_/_,-._`_______)___(________'_,-.__\\\n";
+        cout << "(_(___`._____,'_____`.______,'___)_)\n";
+        cout << "_\\_\\____\\__,'________`.____/.___/_/\n";
+        hambre -= 3;
+        energia += 1;
+        ajustar_valores();
+    }
+
+    void ver_estado() {
+        cout << "\nEstado de " << nombre << ":\n";
+        cout << "Energía: " << energia << "\n";
+        cout << "Hambre: " << hambre << "\n";
+        cout << "Felicidad: " << felicidad << "\n";
+    }
+
+private:
+    void ajustar_valores() {
+        if (hambre < 0) hambre = 0;
+        if (hambre > 10) hambre = 10;
+        if (energia < 0) energia = 0;
+        if (energia > 10) energia = 10;
+        if (felicidad < 0) felicidad = 0;
+        if (felicidad > 10) felicidad = 10;
+    }
+};
+
+void mezclar_acciones(int acciones[], int tamano) {
+    for (int i = tamano - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        swap(acciones[i], acciones[j]);
+    }
+}
+
+void modo_automatico(Mascota &miMascota) {
+    cout << "\nModo automático activado...\n";
+
+    int acciones[] = {2, 3, 4};  
+    mezclar_acciones(acciones, 3); 
+
+    for (int i = 0; i < 3; i++) {
+        if (!miMascota.verificar_estado()) return;
+
+        switch (acciones[i]) {
+            case 2:
+                miMascota.jugar();
+                break;
+            case 3:
+                miMascota.dormir();
+                break;
+            case 4:
+                miMascota.comer();
+                break;
+        }
+
+        sleep(2);  
+        
+    }
+
+    cout << "\nModo automático finalizado. Regresando al menú...\n";
+}
+
+void mostrar_menu() {
+    cout << "\n===========================\n";
+    cout << "      MENU PRINCIPAL       \n";
+    cout << "===========================\n";
+    cout << "1. Ver estado de la mascota\n";
+    cout << "2. Jugar con la mascota    \n";
+    cout << "3. Dejar que duerma        \n";
+    cout << "4. Alimentar               \n";
+    cout << "5. Limpiar la pantalla     \n";
+    cout << "6. Salir del juego         \n";
+    cout << "7. Modo automático         \n";
+    cout << "===========================\n";
+    cout << "Elige una opción: ";
+}
+
+int main() {
+    srand(time(0));  
+    int opcion;
+    string nombre;
+
+    cout << "Asignale un nombre para tu mascota: ";
+    getline(cin, nombre);  
+
+    Mascota miMascota(nombre);
+
+    while (true) {
+        if (!miMascota.verificar_estado()) {
+            break;
+        }
+
+        mostrar_menu();
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                miMascota.ver_estado();
+                break;
+            case 2:
+                miMascota.jugar();
+                break;
+            case 3:
+                miMascota.dormir();
+                break;
+            case 4:
+                miMascota.comer();
+                break;
+            case 5:
+                limpiar_pantalla();
+                break;
+            case 6:
+                cout << "Saliendo del juego...\n";
+                return 0;
+            case 7:
+                modo_automatico(miMascota);
+                break;
+            default:
+                cout << "Opción no válida, intenta de nuevo.\n";
+                break;
+        }
+    }
+
+    cout << "\nFin del juego.\n";
+    return 0;
+}
