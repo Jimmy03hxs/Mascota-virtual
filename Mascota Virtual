@@ -6,7 +6,6 @@
 
 using namespace std;
 
-// Función para limpiar la pantalla
 void limpiar_pantalla() { 
     cout << "\033[2J\033[H"; 
 }
